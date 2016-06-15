@@ -3,9 +3,5 @@ public class Hello{
 		int i = 0;
 		int j = 0;
 		System.out.println("Hello world!"+i+j);
-	
-
-
-	
 	}
 }
