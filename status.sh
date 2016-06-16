@@ -1,0 +1,2 @@
+"uname"
+mvn -v
