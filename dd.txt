@@ -6,3 +6,4 @@ i love
 wos
 
 nihao
+This is a new file.
