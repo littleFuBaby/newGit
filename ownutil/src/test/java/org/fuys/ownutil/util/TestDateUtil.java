@@ -10,7 +10,7 @@ public class TestDateUtil {
 	@Test
 	public void testGetNow() {
 		LoggerFactory.getLogger(TestDateUtil.class).info("Test org.fuys.ownutil.util.DateUtils.getNow()");
-		TestCase.assertTrue(DateUtils.getNow()!=null);
+		TestCase.assertTrue(DateUtils.getNowFormat()!=null);
 	}
 
 }

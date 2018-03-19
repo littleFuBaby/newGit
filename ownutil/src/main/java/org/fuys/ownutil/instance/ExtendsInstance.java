@@ -7,6 +7,7 @@ package org.fuys.ownutil.instance;
  *
  */
 class SuperClass{
+	public final static String INFO = "static info";
 	private static String secondName;
 	private String firstName;
 	static{
@@ -39,8 +40,13 @@ class SubClass extends SuperClass{
 	public SubClass(String firstName){
 		this.setFirstName(firstName);
 	}
+	@SuppressWarnings("static-access")
 	void showFullName(){
 		System.out.println("Full Name From SubClass--> " + this.getFirstName() + " " + getSecondName());
+		System.out.println(this.INFO);
+		System.out.println(this);
+		// illegal
+		// System.out.println(super);
 	}
 }
 class SubSubClass extends SubClass{
