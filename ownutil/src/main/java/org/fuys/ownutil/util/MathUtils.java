@@ -1,5 +1,6 @@
 package org.fuys.ownutil.util;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import org.slf4j.Logger;
@@ -90,8 +91,20 @@ public class MathUtils {
 		return false;
 	}
 	
+	/**
+	 * Exact Round
+	 * @param num
+	 * @param scale
+	 * @return
+	 */
+	public static double round(double num,int scale){
+		return new BigDecimal(num).divide(new BigDecimal(1), scale, BigDecimal.ROUND_HALF_UP)
+				.doubleValue();
+	}
+	
 	public static void main(String[] args) {
 		System.out.println(isNarcissisticNumber(new BigInteger("188451485447897896036875")));
+		System.out.println(round(-15.51,-1));
 	}
 	
 }
