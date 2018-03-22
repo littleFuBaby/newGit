@@ -102,9 +102,16 @@ public class MathUtils {
 				.doubleValue();
 	}
 	
+	public static int phoneLastNumAndAge(int phoneLastNum,int birthYear){
+		int phoneLastNumAge = ((((phoneLastNum * 2)+5)*50)+1767)-birthYear;
+		return phoneLastNumAge;
+	}
+	
 	public static void main(String[] args) {
 		System.out.println(isNarcissisticNumber(new BigInteger("188451485447897896036875")));
 		System.out.println(round(-15.51,-1));
+		
+		System.out.println(phoneLastNumAndAge(4,1957));
 	}
 	
 }
