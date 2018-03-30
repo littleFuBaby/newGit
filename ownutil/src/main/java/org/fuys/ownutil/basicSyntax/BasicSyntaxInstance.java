@@ -1,4 +1,4 @@
-package org.fuys.ownutil.instance;
+package org.fuys.ownutil.basicSyntax;
 
 import java.util.Calendar;
 

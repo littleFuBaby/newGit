@@ -1,4 +1,4 @@
-package org.fuys.ownutil.instance;
+package org.fuys.ownutil.inheritance;
 
 /**
  * Notice difference between extending class relationship 
