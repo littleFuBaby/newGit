@@ -1,4 +1,4 @@
-package org.fuys.ownutil.instance;
+package org.fuys.ownutil.encapsulation;
 
 /**
  * Code Block instance
@@ -7,8 +7,11 @@ package org.fuys.ownutil.instance;
  */
 class CodeBlock{
 	
-	public CodeBlock(){
-		System.out.println("Constructor Method");
+	// Static Code Block
+	// Higher privilege than Constructor Code Block
+	// Used first time when class is used
+	static{
+		System.out.println("Static Code Block");
 	}
 	// Constructor Code Block
 	// Higher privilege than Constructor Method
@@ -16,11 +19,8 @@ class CodeBlock{
 	{
 		System.out.println("Constructor Code Block");
 	}
-	// Static Code Block
-	// Higher privilege than Constructor Code Block
-	// Used first time when class is used
-	static{
-		System.out.println("Static Code Block");
+	public CodeBlock(){
+		System.out.println("Constructor Method");
 	}
 	
 	public void normalCodeBlock(){
@@ -31,6 +31,11 @@ class CodeBlock{
 		}
 		String info = "Normal Code";
 		System.out.println(info);
+		// Synchronized Code Block
+		synchronized(this){
+			info = "Synchronized Code Block";
+			System.out.println(info);
+		}
 	}	
 }
 
@@ -38,6 +43,8 @@ public class CodeBlockInstance {
 
 	public static void main(String[] args) {
 		CodeBlock codeBlock = new CodeBlock();
+		codeBlock.normalCodeBlock();
+		codeBlock = new CodeBlock();
 		codeBlock.normalCodeBlock();
 	}
 }
