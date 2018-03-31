@@ -1,7 +1,19 @@
-package org.fuys.ownutil.instance;
+package org.fuys.ownutil.polymorphism;
+
+import java.util.Calendar;
+
+/**
+ * static abstract inner class in abstract class
+ * @author ys
+ *
+ */
 abstract class A {
+	
 	static abstract class B {
 		public abstract void print();
+		public String toStr(){
+			return this.toString();
+		}
 	}
 }
 class C extends A.B {
@@ -9,14 +21,27 @@ class C extends A.B {
 	public void print() {
 		System.out.println("C");
 	}
+	public String toStr(){
+		return this.toString();
+	}
 }
+
+/**
+ * static method in abstract class
+ * @author ys
+ *
+ */
 abstract class D{
 	public static void print(){
 		System.out.println("D");
 	}
 }
-class E extends D{
-}
+
+/**
+ * private static inner class in abstract class
+ * @author ys
+ *
+ */
 abstract class F{
 	private static class G extends F{
 		@Override
@@ -29,6 +54,12 @@ abstract class F{
 		return new G();
 	}
 }
+
+/**
+ * abstract class contractor method
+ * @author ys
+ *
+ */
 abstract class H{
 	public H(){
 		this.print();
@@ -45,50 +76,27 @@ class I extends H{
 		System.out.println(this.info);
 	}
 }
-abstract class Model{
-	public abstract void work();
-	public abstract void think();
-	public abstract void supply();
-}
-class Human extends Model{
-
-	@Override
-	public void work() {
-		System.out.println("human work");
-	}
-
-	@Override
-	public void think() {
-		System.out.println("human think");
-	}
-
-	@Override
-	public void supply() {
-		System.out.println("human supply");
-	}
-	
-}
-class Kindle extends Model{
-
-	@Override
-	public void work() {
-		System.out.println("kindle work");
-	}
-
-	@Override
-	public void think() {
-	}
-
-	@Override
-	public void supply() {
-		System.out.println("kindle supply");
-	}
-	
-}
 public class AbstractClassInstance {
 	public static void main(String[] args) {
-		new C().print();
+		
+		// static abstract inner class
+		C c = new C();
+		System.out.println(c.toStr());
+		c.print();
+		A.B ab = c;
+		System.out.println(ab.toStr());
+		ab.print();
+		C cc = (C)ab;
+		System.out.println(cc.toStr());
+		cc.print();
+		System.out.println("*******************************");
+		
+		// private static inner class
 		F.getInstance().print();
+		Calendar.getInstance().getTimeInMillis();
+		
+		// contractor method
 		new I("WORLD").print();
+		
 	}
 }

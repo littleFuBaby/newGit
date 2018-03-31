@@ -1,4 +1,4 @@
-package org.fuys.ownutil.instance;
+package org.fuys.ownutil.polymorphism;
 
 interface Woman {
 
@@ -58,13 +58,13 @@ class FactoryWoman {
 		String className = null;
 		switch (woman) {
 		case "west":
-			className = "org.fuys.ownutil.instance.WesternWoman";
+			className = "org.fuys.ownutil.polymorphism.WesternWoman";
 			break;
 		case "japan":
-			className = "org.fuys.ownutil.instance.JapaneseWoman";
+			className = "org.fuys.ownutil.polymorphism.JapaneseWoman";
 			break;
 		case "korea":
-			className = "org.fuys.ownutil.instance.KoreanWoman";
+			className = "org.fuys.ownutil.polymorphism.KoreanWoman";
 			break;
 		default:
 			break;

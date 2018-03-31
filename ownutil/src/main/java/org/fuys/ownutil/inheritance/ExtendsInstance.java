@@ -1,77 +1,101 @@
 package org.fuys.ownutil.inheritance;
 
+import java.util.Date;
+
 /**
  * Notice difference between extending class relationship 
  * and simple java class implementing relationship different tables
  * @author ys
- *
  */
 class SuperClass{
-	public final static String INFO = "static info";
-	private static String secondName;
-	private String firstName;
+	
 	static{
-		secondName = "fu";
+		honor = "NORMAL";
+		FAMILYCREATETIME = new Date();
 	}
+	
+	public final static Date FAMILYCREATETIME;
+	
+	private String name;
+	private static String honor;
+	
 	public SuperClass(){
 	}
-	public SuperClass(String firstName){
-		this.firstName = firstName;
+	public SuperClass(String name){
+		this.name = name;
+	}	
+	
+	public String getName() {
+		return name;
 	}
-	public void setFirstName(String firstName){
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getFirstName(){
-		return this.firstName;
+	public static String getHonor() {
+		return honor;
 	}
-	public static String getSecondName(){
-		return secondName;
+	public static void setHonor(String honor) {
+		SuperClass.honor = honor;
 	}
-	public String getFullName(){
-		return this.firstName + " " + secondName;
+	
+	public String getInformation(){
+		return "Honor --> " + honor + " | Name --> " + this.name + " | Super";
 	}
-	void showFullName(){
-		System.out.println("Full Name From SuperClass--> " + this.firstName + " " + secondName);
+	void print(){
+		System.out.println(this.getInformation());
 	}
 }
+
 class SubClass extends SuperClass{
 	public SubClass(){
 	}
-	public SubClass(String firstName){
-		this.setFirstName(firstName);
+	public SubClass(String name){
+		// illegal syntax --> super *****************************
+		super();
+		this.setName(name);
 	}
-	@SuppressWarnings("static-access")
-	void showFullName(){
-		System.out.println("Full Name From SubClass--> " + this.getFirstName() + " " + getSecondName());
-		System.out.println(this.INFO);
-		System.out.println(this);
-		// illegal
-		// System.out.println(super);
+	public String getInformation(){
+		return "Honor --> " + getHonor() + " | Name --> " + this.getName() + " | Sub";
+	}
+	protected void print(){
+		// System.out.println(this.getInformation());
+		super.print();
 	}
 }
 class SubSubClass extends SubClass{
-	public SubSubClass(){
+	
+	public SubSubClass(String name){
+		this.setName(name);
 	}
-	public SubSubClass(String firstName){
-		this.setFirstName(firstName);
+	public String getInformation(){
+		return "Honor --> " + getHonor() + " | Name --> " + this.getName() + " | Subsub";
 	}
 	/*
-	 * Incompatible showFullName comparing with same method from superClass.
+	 * Incompatible print comparing with same method from superClass.
 	 * Because of return value type.
-	public boolean showFullName(){
-		System.out.println("Full Name From SubSubClass--> " + this.getFirstName() + " " + getSecondName());
+	public boolean print(){
+		System.out.println(this.getInformation());
 		return true;
 	}
-	*/
-	public void showFullName(){
-		System.out.println("Full Name From SubSubClass--> " + this.getFirstName() + " " + getSecondName());
-	}
+	 */
 }
 public class ExtendsInstance {
 	
 	public static void main(String[] args) {
-		SubSubClass subSub = new SubSubClass("ruyi");
-		subSub.showFullName();
+		SubSubClass subSub = new SubSubClass("jane");
+		subSub.print();
+		
+		SubClass sub = new SubClass("andy");
+		SubClass.setHonor("UP");
+		sub.print();
+		
+		SuperClass sup = new SuperClass("huangdi");
+		sup.print();
+		
+		System.out.println(SubSubClass.FAMILYCREATETIME);
+		System.out.println(SubClass.FAMILYCREATETIME);
+		System.out.println(SuperClass.FAMILYCREATETIME);
+		
 	}
 
 }
