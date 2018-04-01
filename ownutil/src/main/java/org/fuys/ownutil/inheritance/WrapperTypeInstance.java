@@ -1,4 +1,4 @@
-package org.fuys.ownutil.instance;
+package org.fuys.ownutil.inheritance;
 
 class WrapperBoolean{
 	private boolean flag;
@@ -16,7 +16,9 @@ public class WrapperTypeInstance {
 		// Wrapper Type Rule
 		WrapperBoolean flag = new WrapperBoolean(true);
 		System.out.println(flag.booleanValue());
+		
 		// jdk1.5 new characters
+		// auto wrap and unwrap
 		Integer a = 10;
 		Integer b = 10;
 		Integer c = new Integer(10);
@@ -24,10 +26,12 @@ public class WrapperTypeInstance {
 		System.out.println(a==c);		// false
 		System.out.println(b==c);		// false
 		System.out.println(b.equals(c));// true
+		
 		// object transfer with Number
 		Object obj = 10;
 		int num = (int) obj;
 		System.out.println(num * 2);
+		
 		// number transfer to string
 		System.out.println(String.valueOf(12));
 	}
