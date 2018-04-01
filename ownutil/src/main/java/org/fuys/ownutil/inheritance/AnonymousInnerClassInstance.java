@@ -10,7 +10,7 @@ interface Key {
 	public void lock();
 }
 
-public class AnonymityInstance {
+public class AnonymousInnerClassInstance {
 
 	public static void main(String[] args) {
 		Key key = new Key() {
