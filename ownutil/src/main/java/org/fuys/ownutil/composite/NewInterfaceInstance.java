@@ -1,4 +1,4 @@
-package org.fuys.ownutil.instance;
+package org.fuys.ownutil.composite;
 
 interface Thing {
 	public void perform();
@@ -10,7 +10,7 @@ interface Thing {
 	}
 }
 
-class Cup implements Thing {
+class PapeCup implements Thing {
 	
 	public static void drink(){
 		System.out.println("drink water");
@@ -25,13 +25,19 @@ class Cup implements Thing {
 public class NewInterfaceInstance {
 	
 	public static void main(String[] args) {
-		Thing thing = new Cup();
+		Thing thing = new PapeCup();
 		thing.perform();
 		thing.print();
 		Thing.println();
-		Cup cup = (Cup)thing;
-		cup.perform();
-		Cup.drink();
+		PapeCup papeCup = (PapeCup)thing;
+		papeCup.perform();
+		PapeCup.drink();
+		new Thing() {
+			
+			@Override
+			public void perform() {
+			}
+		}.print();
 	}
 
 }
