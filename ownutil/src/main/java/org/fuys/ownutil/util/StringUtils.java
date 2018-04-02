@@ -8,6 +8,18 @@ package org.fuys.ownutil.util;
 public class StringUtils {
 	
 	/**
+	 * if string is null or "" or "  "
+	 * @param str
+	 * @return
+	 */
+	public static boolean isEmpty(String str){
+		if(str ==null || "".equals(str.trim())){
+			return true;
+		}
+		return false;
+	}
+	
+	/**
 	 * If string is number , return true
 	 * @param str
 	 * @return
