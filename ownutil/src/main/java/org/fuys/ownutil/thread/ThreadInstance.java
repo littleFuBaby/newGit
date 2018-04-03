@@ -24,7 +24,7 @@ class MyThread extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println(this.threadName + ":" + i);
+			System.out.println(Thread.currentThread().getName()+":"+this.threadName + ":" + i);
 		}
 	}
 	
@@ -32,11 +32,22 @@ class MyThread extends Thread {
 
 public class ThreadInstance {
 	public static void main(String[] args) {
+		// define and start thread
 		new MyThread("a").start();
 		new MyThread("c").start();
 		new MyThread(null).start();
 		new MyThread("  ").start();
 		new MyThread("").start();
 		new MyThread("b").start();
+		
+		// name thread
+		Thread thread = new MyThread(null);
+		thread.setName("name thread");
+		thread.setPriority(Thread.MAX_PRIORITY);
+		thread.start();
+		System.out.println("=============="+thread.getName());
+		Thread thr = new Thread("name thread second way");
+		thr.start();
+		System.out.println("++++++++++++++"+thr.getName());
 	}
 }

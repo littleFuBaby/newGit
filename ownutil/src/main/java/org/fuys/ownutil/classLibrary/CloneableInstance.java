@@ -1,4 +1,4 @@
-package org.fuys.ownutil.instance;
+package org.fuys.ownutil.classLibrary;
 
 class Java implements Cloneable{
 	
@@ -40,6 +40,7 @@ public class CloneableInstance {
 		Java java = ((Java) obj).copy();
 		System.out.println(obj);
 		System.out.println(java);
+		System.out.println(obj == java);
 	}
 
 }
