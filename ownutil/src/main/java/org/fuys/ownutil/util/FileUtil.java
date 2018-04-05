@@ -21,7 +21,7 @@ public class FileUtil {
 	public static final int MEGEBYTE = 5;
 
 	public static final int GIGABYTE = 7;
-
+	
 	/**
 	 * file length
 	 * 
