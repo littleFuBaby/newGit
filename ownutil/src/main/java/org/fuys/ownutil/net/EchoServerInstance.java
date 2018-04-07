@@ -1,4 +1,4 @@
-package org.fuys.ownutil.instance;
+package org.fuys.ownutil.net;
 
 import java.io.PrintStream;
 import java.net.ServerSocket;
@@ -58,7 +58,6 @@ public class EchoServerInstance {
 		boolean flag = true;
 		while(flag){
 			new Thread(new EchoServerThread(server.accept())).start();
-			
 		}
 		server.close();
 	}

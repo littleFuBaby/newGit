@@ -1,4 +1,4 @@
-package org.fuys.ownutil.instance;
+package org.fuys.ownutil.net;
 
 import java.io.PrintStream;
 import java.net.Socket;
@@ -28,8 +28,8 @@ public class EchoClientInstance {
 				if(str.equalsIgnoreCase("byebye")){
 					flag = false;
 				}
-				if(serverInput.hasNext()){
-					System.out.println(serverInput.next());
+				if(serverInput.hasNextLine()){
+					System.out.println(serverInput.nextLine());
 				}
 			}
 		}

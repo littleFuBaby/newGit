@@ -40,6 +40,26 @@ public class DateUtils {
 		return nowFormat;
 	}
 	
+	/**
+	 * compare with ensured hour before
+	 * @param hour
+	 * @return
+	 */
+	public static int beforeHH(int hour){
+		if(hour > 23 || hour < 0 ){
+			return -1;
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat("HH");
+		int hh = Integer.parseInt(sdf.format(Calendar.getInstance().getTime()));
+		if(hh < hour){
+			return 1;
+		}else if(hh == hour){
+			return 0;
+		}else {
+			return -1;
+		}
+	}
+	
 	public static void main(String[] args) {
 		System.out.println(DateUtils.getNowFormat());
 		System.out.println(DateUtils.getNowFormat(null));

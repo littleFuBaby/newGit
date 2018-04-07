@@ -1,4 +1,4 @@
-package org.fuys.ownutil.instance;
+package org.fuys.ownutil.array;
 
 import java.util.ArrayList;
 import java.util.List;

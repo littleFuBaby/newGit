@@ -1,4 +1,4 @@
-package org.fuys.ownutil.instance;
+package org.fuys.ownutil.stream;
 
 import java.io.File;
 import java.io.FileInputStream;
