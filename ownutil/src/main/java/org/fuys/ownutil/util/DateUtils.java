@@ -2,6 +2,8 @@ package org.fuys.ownutil.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +60,19 @@ public class DateUtils {
 		}else {
 			return -1;
 		}
+	}
+	
+	/**
+	 * add days
+	 * @param sourceDate
+	 * @param days
+	 * @return
+	 */
+	public static Date addDays(Date sourceDate,long days){
+		Date date = sourceDate;
+		long time = TimeUnit.MILLISECONDS.convert(days, TimeUnit.DAYS);
+		time += date.getTime();
+		return new Date(time);
 	}
 	
 	public static void main(String[] args) {
