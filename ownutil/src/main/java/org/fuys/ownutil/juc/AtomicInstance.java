@@ -1,10 +1,13 @@
 package org.fuys.ownutil.juc;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 import java.util.concurrent.atomic.AtomicReference;
 
 class AtomicModel {
+	
+	public static int count = 0;
 	
 	private volatile long id;
 	private String info;
@@ -20,15 +23,20 @@ class AtomicModel {
 	public void setInfo(String info) {
 		this.info = info;
 	}
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public AtomicModel(long id, String info) {
 		super();
 		this.id = id;
-		// 使用AtomicLongFieldUpdater类
-		AtomicLongFieldUpdater alfu = AtomicLongFieldUpdater.newUpdater(AtomicModel.class, "id");
-		alfu.compareAndSet(this, this.id, 1000);
 		this.info = info;
+		count ++;
 	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void changeId(long newId){
+		// 使用AtomicLongFieldUpdater类
+		AtomicLongFieldUpdater alfu = AtomicLongFieldUpdater.newUpdater(this.getClass(), "id");
+		alfu.compareAndSet(this, this.id, newId);
+	}
+	
 	@Override
 	public String toString() {
 		return "AtomicModel [id=" + id + ", info=" + info + "]";
@@ -54,13 +62,24 @@ public class AtomicInstance {
 		AtomicReference<AtomicModel> ar = new AtomicReference<AtomicModel>(am1);
 		System.out.println("init reference --> " + ar);
 		ar.compareAndSet(am2, am2);
-		System.out.println("first change reference --> " + ar);
+		System.out.println("first change reference --> " + ar.get());
 		ar.compareAndSet(am1, am2);
-		System.out.println("second change reference --> " + ar);
+		System.out.println("second change reference --> " + ar.get());
+		
+		System.out.println("first Total count:" + AtomicModel.count);
+		
+		AtomicInteger ai = new AtomicInteger(AtomicModel.count);
 		
 		// AtomicLongFieldUpdater
 		AtomicModel am = new AtomicModel(100, "okay");
-		System.out.println(am);
+		System.out.println("Atomic model before:" + am);
+		am.changeId(110);
+		System.out.println("Atomic model end:" + am);
+		
+		System.out.println("second Total count:" + AtomicModel.count);
+		
+		System.out.println("before second Total count:" + ai.get());
+		
 	}
 
 }

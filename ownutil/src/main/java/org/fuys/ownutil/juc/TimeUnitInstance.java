@@ -27,7 +27,7 @@ public class TimeUnitInstance {
 		calendar.add(Calendar.DAY_OF_MONTH, 3);
 		System.out.println("Three days later by using Calendar -->" + calendar.getTime());
 		
-		System.out.println(DateUtils.addDays(new Date(), -3));
+		System.out.println(DateUtils.addTime(new Date(), -3,TimeUnit.DAYS));
 	}
 
 }

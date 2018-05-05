@@ -68,14 +68,25 @@ public class DateUtils {
 	 * @param days
 	 * @return
 	 */
-	public static Date addDays(Date sourceDate,long days){
-		Date date = sourceDate;
-		long time = TimeUnit.MILLISECONDS.convert(days, TimeUnit.DAYS);
-		time += date.getTime();
-		return new Date(time);
+	public static Date addTime(Date sourceDate,long num,TimeUnit sourceTimeUnit){
+		if(sourceDate == null)
+			return null;
+		else if(sourceTimeUnit == null)
+			return sourceDate;
+		else {
+			long time = TimeUnit.MILLISECONDS.convert(num, sourceTimeUnit);
+			time += sourceDate.getTime();
+			return new Date(time);
+		}
 	}
 	
 	public static void main(String[] args) {
+		try {
+			TimeUnit.DAYS.sleep(2);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println(addTime(new Date(),3,TimeUnit.MINUTES));
 		System.out.println(DateUtils.getNowFormat());
 		System.out.println(DateUtils.getNowFormat(null));
 	}
