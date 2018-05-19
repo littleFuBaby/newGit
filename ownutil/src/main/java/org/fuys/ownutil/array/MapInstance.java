@@ -3,8 +3,11 @@ package org.fuys.ownutil.array;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.WeakHashMap;
 
 class Goods{
 	private String name;
@@ -71,6 +74,9 @@ public class MapInstance {
 		map.put("pepsi", 4.0);
 		map.put("sprite", 3.5);
 		map.put(null, 0.0);
+		map.put("123-", 44.4);
+		map.put("test", 44.4);
+		map.put("test", 54.4);
 		System.out.println(map);
 		
 		// hashtable
@@ -93,6 +99,15 @@ public class MapInstance {
 			Map.Entry<Goods, Goods> goods = iter.next();
 			System.out.println(goods.getKey() + "--" + goods.getValue());
 		}
+		
+		Map<String,String> linkedMap = new LinkedHashMap<>();
+		linkedMap.put("123", "34");
+		
+		Map<String,String> treeMap = new TreeMap<>();
+		treeMap.put("234", "34");
+		
+		Map<String ,String> weakHashMap = new WeakHashMap<>();
+		weakHashMap.put("dd", "dd");
 		
 	}
 

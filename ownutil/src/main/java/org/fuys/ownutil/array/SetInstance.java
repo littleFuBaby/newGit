@@ -1,12 +1,16 @@
 package org.fuys.ownutil.array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-class Animal implements Comparable<Animal>{
+class Animal implements Comparable<Animal>
+{
 	
 	private String name;
 	private int age;
@@ -60,7 +64,7 @@ class Animal implements Comparable<Animal>{
 		}
 		return false;
 	}
-	@Override
+	//@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -68,7 +72,7 @@ class Animal implements Comparable<Animal>{
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
-	@Override
+	//@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -91,8 +95,45 @@ class Animal implements Comparable<Animal>{
 public class SetInstance {
 	
 	public static void main(String[] args) {
-		// set
+		
+		Comparator<Animal> comparator = new Comparator<Animal>() {
+			
+			@Override
+			public int compare(Animal o1, Animal o2) {
+				if(o1 == null || o2 == null){
+					return -1;
+				}
+				if(o1 == o2){
+					return 0;
+				}
+				if(o1.getAge() > o2.getAge()){
+					return 1;
+				}else if(o1.getAge() < o2.getAge()){
+					return -1;
+				}else {
+					return o1.getName().compareTo(o2.getName());
+				}
+			}
+		};
+		
+		// HashSet
 		Set<Animal> set = new HashSet<>();
+		set.add(new Animal("Spike",3));
+		set.add(new Animal("Spike",3));
+		set.add(new Animal("Tom",3));
+		set.add(new Animal("Jerry",2));
+		System.out.println(set);
+		set.remove(new Animal("Spike",3));
+		System.out.println(set);
+		Animal[] animals = new Animal[set.toArray().length];
+		for(int x=0;x<animals.length;x++){
+			animals[x] = (Animal) set.toArray()[x];
+		}
+		Arrays.sort(animals, comparator);
+		System.out.println(animals);
+		System.out.println("******************************");
+		// LinkedHashSet
+		set = new LinkedHashSet<>();
 		set.add(new Animal("Spike",3));
 		set.add(new Animal("Spike",3));
 		set.add(new Animal("Tom",3));
@@ -102,7 +143,7 @@ public class SetInstance {
 		System.out.println(set);
 		
 		System.out.println("******************************");
-		// set
+		// TreeSet
 		set = new TreeSet<>();
 		set.add(new Animal("Spike",3));
 		set.add(new Animal("Spike",3));
@@ -123,6 +164,20 @@ public class SetInstance {
 		System.out.println(list);
 		list.remove(new Animal("Spike",3));
 		System.out.println(list);
+		
+		
+		// equals() hashCode()
+		String a = new String("È¨Íþ");
+		String b = new String("È¨Íþ");
+		System.out.println("a hashcode:" + a.hashCode());
+		System.out.println("b hashcode:" + b.hashCode());
+		System.out.println("a == b:" + a == b);
+		
+		
+		// LinkedHashSet
+		Set<String> linkedHashSet = new LinkedHashSet<>();
+		linkedHashSet.add("2");
+		
 	}
 
 }

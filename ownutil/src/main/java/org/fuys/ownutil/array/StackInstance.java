@@ -15,6 +15,10 @@ public class StackInstance {
 		stack.push("2-andy");
 		stack.push("3-andy");
 		stack.push("4-andy");
+		
+		// search
+		System.out.println("search 3-andy pos:" + stack.search("3-andy"));
+		System.out.println("Stack Peek pos:" + stack.search(stack.peek()) + ",peek:" + stack.peek());
 
 		// Enumeration
 		Enumeration<String> enumeration = stack.elements();
