@@ -1,27 +1,35 @@
 package org.fuys.ownutil.juc;
 
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.locks.LockSupport;
 
 public class CopyOnWriteArrayListInstance {
-
+	
+	private static List<String> list = new CopyOnWriteArrayList<>();
+	
+	private static volatile boolean flag = true;
+	
 	public static void main(String[] args) {
 		
-		// CopyOnWriteArrayList
-		CopyOnWriteArrayList<String> cwal = new CopyOnWriteArrayList<>();
-		cwal.add("234");
-		cwal.add("234535");
-		cwal.add("234535");
-		System.out.println(cwal.toString());
-		System.out.println(cwal.get(3));
+		Thread mainThread = Thread.currentThread();
 		
-		// CopyOnWriteArraySet
-		CopyOnWriteArraySet<String> cwas = new CopyOnWriteArraySet<>();
-		cwas.add("dd");
-		cwas.add("dd6");
-		cwas.add("dd4");
-		cwas.add("dd2");
-		System.out.println(cwas);
+		while(flag){
+			new Thread(()->{
+				System.out.println(list.size());
+				if(list.size()>100){
+					flag = false;
+					LockSupport.unpark(mainThread);
+				}else {
+					list.add(Thread.currentThread().getName());
+				}
+			}).start();
+		}
+		
+		LockSupport.park();
+		System.out.println("list size :" + list.size());
+		System.out.println("list content:" + list);
+		
 	}
 }
 
